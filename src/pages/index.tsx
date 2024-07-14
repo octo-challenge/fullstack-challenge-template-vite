@@ -1,3 +1,5 @@
+import { Button } from '~/shared/components/ui/button'
+
 export default function Home() {
   return (
     <main>
@@ -11,6 +13,9 @@ export default function Home() {
             수비니겨 날로 쑤메 뻔한킈 하고져 할따라미니라
           </p>
         </article>
+        <div className="mt-4">
+          <Button>shadcn/ui</Button>
+        </div>
       </div>
     </main>
   )
