@@ -2,8 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function Layout() {
   return (
-    <div>
-      <h1>Auth Layout</h1>
+    <div className="min-h-[calc(100dvh-var(--gnb-h))] pt-[var(--head-area)]">
       <Outlet />
     </div>
   )

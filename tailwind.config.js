@@ -22,6 +22,12 @@ export default {
       center: true,
     },
     extend: {
+      padding: {
+        space: '80px',
+      },
+      margin: {
+        space: '80px',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

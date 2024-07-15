@@ -5,3 +5,9 @@
 * {
   @apply font-sans;
 }
+
+:root {
+  --gnb-h: 80px;
+  --head-area: 60px;
+  --footer-area: 200px;
+}

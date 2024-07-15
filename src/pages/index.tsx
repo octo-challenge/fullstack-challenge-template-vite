@@ -3,7 +3,7 @@ import { Button } from '~/shared/components/ui/button'
 export default function Home() {
   return (
     <main>
-      <div className="h-[100dvh] grid place-content-center">
+      <div className="grid h-[calc(100dvh-var(--gnb-h))] place-content-center">
         <article className="prose">
           <h1>훈민정음</h1>
           <p>
