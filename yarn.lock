@@ -1731,6 +1731,11 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+fp-ts@^2.16.8:
+  version "2.16.8"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.8.tgz#dfa1ea1c967ac6794c43ce877aeb8ed76f5e0df7"
+  integrity sha512-nmDtNqmMZkOxu0M5hkrS9YA15/KPkYkILb6Axg9XBAoUoYEtzg+LFmVWqZrl9FNttsW0qIUpx9RCA9INbv+Bxw==
+
 fraction.js@^4.3.7:
   version "4.3.7"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
@@ -2874,6 +2879,11 @@ source-map-js@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
   integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
+
+spec-pattern-ts@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/spec-pattern-ts/-/spec-pattern-ts-1.0.4.tgz#d338df85eed29f14594ba046dad76102d3fda982"
+  integrity sha512-oDl3cMFH9Vp1Iy2yCFRwBe9tqpnNz+xvliaHVHswSDWg27kfTQF6yUxpFuwdbwuCnn9CpJloPjsKJrqEoVeCxw==
 
 "string-width-cjs@npm:string-width@^4.2.0":
   version "4.2.3"
