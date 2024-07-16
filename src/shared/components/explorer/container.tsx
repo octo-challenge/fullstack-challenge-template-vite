@@ -1,4 +1,4 @@
-import { patterns } from '@generouted/react-router/core'
+import { patterns } from '@hansanghyeon/generouted-react-router/core'
 
 import { Arrow } from './icons'
 import { classNames } from './utils'
@@ -30,7 +30,7 @@ export const Container = ({ children, source = '' }: Props) => {
         <div className="flex h-full w-full flex-col items-center justify-center">
           <ul className="flex space-x-3 font-semibold">
             <div className="flex flex-col justify-between">
-              <li className="w-[105px] self-start rounded-l-xl bg-primary px-3 py-2 pl-4 text-white">
+              <li className="bg-primary w-[105px] self-start rounded-l-xl px-3 py-2 pl-4 text-white">
                 src/pages
               </li>
               <li className="w-[105px] self-start rounded-l-xl bg-slate-200 px-3 py-2 pl-4 opacity-50">
@@ -80,7 +80,7 @@ export const Container = ({ children, source = '' }: Props) => {
 
             <div className="flex flex-col justify-between">
               <li className="flex w-[105px] self-start">
-                <span className="rounded-r-xl bg-primary px-3 py-2 pr-4 text-white">
+                <span className="bg-primary rounded-r-xl px-3 py-2 pr-4 text-white">
                   .tsx
                 </span>
               </li>
@@ -93,10 +93,10 @@ export const Container = ({ children, source = '' }: Props) => {
           </ul>
 
           <span className="mt-10">
-            <Arrow className="h-9 w-9 text-primary" />
+            <Arrow className="text-primary h-9 w-9" />
           </span>
 
-          <h4 className="mt-8 flex rounded-xl bg-primary px-4 py-2 font-semibold text-white">
+          <h4 className="bg-primary mt-8 flex rounded-xl px-4 py-2 font-semibold text-white">
             {`/${file}`
               ?.replace(...patterns.route)
               .split('/')

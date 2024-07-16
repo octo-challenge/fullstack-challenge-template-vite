@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 /* eslint-disable @typescript-eslint/ban-types */
-import { generateRegularRoutes, patterns } from '@generouted/react-router/core'
+import {
+  generateRegularRoutes,
+  patterns,
+} from '@hansanghyeon/generouted-react-router/core'
 import { Link, Location, RouteObject, useLocation } from 'react-router-dom'
 
 import { Arrow, Directory, File } from './icons'
@@ -143,7 +146,7 @@ export const Routes = () => {
   return (
     <header className="w-80">
       <nav className="h-full rounded-lg border border-dashed border-slate-500 bg-white py-6">
-        <section className="flex items-center space-x-3 px-6 pb-6 pt-1 text-primary">
+        <section className="text-primary flex items-center space-x-3 px-6 pb-6 pt-1">
           <img className="h-4 w-4" src="/favicon.svg" />
           <a
             className="flex items-center space-x-1 text-sm font-bold underline"
