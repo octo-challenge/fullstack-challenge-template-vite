@@ -13,8 +13,12 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as R404Import } from './routes/404'
+import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAccountImport } from './routes/_authenticated/account'
+import { Route as AuthLogoutImport } from './routes/_auth/logout'
 
 // Create Virtual Routes
 
@@ -23,6 +27,11 @@ const AuthRegisterLazyImport = createFileRoute('/_auth/register')()
 const AuthLoginLazyImport = createFileRoute('/_auth/login')()
 
 // Create/Update Routes
+
+const AuthenticatedRoute = AuthenticatedImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRoute = AuthImport.update({
   id: '/_auth',
@@ -51,6 +60,21 @@ const AuthLoginLazyRoute = AuthLoginLazyImport.update({
   getParentRoute: () => AuthRoute,
 } as any).lazy(() => import('./routes/_auth/login.lazy').then((d) => d.Route))
 
+const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+
+const AuthenticatedAccountRoute = AuthenticatedAccountImport.update({
+  path: '/account',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+
+const AuthLogoutRoute = AuthLogoutImport.update({
+  path: '/logout',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -76,6 +100,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth/logout': {
+      id: '/_auth/logout'
+      path: '/logout'
+      fullPath: '/logout'
+      preLoaderRoute: typeof AuthLogoutImport
+      parentRoute: typeof AuthImport
+    }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardImport
+      parentRoute: typeof AuthenticatedImport
+    }
     '/_auth/login': {
       id: '/_auth/login'
       path: '/login'
@@ -99,8 +151,13 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   R404Route,
   AuthRoute: AuthRoute.addChildren({
+    AuthLogoutRoute,
     AuthLoginLazyRoute,
     AuthRegisterLazyRoute,
+  }),
+  AuthenticatedRoute: AuthenticatedRoute.addChildren({
+    AuthenticatedAccountRoute,
+    AuthenticatedDashboardRoute,
   }),
 })
 
@@ -114,7 +171,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/404",
-        "/_auth"
+        "/_auth",
+        "/_authenticated"
       ]
     },
     "/": {
@@ -126,9 +184,29 @@ export const routeTree = rootRoute.addChildren({
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
+        "/_auth/logout",
         "/_auth/login",
         "/_auth/register"
       ]
+    },
+    "/_authenticated": {
+      "filePath": "_authenticated.tsx",
+      "children": [
+        "/_authenticated/account",
+        "/_authenticated/dashboard"
+      ]
+    },
+    "/_auth/logout": {
+      "filePath": "_auth/logout.tsx",
+      "parent": "/_auth"
+    },
+    "/_authenticated/account": {
+      "filePath": "_authenticated/account.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/dashboard": {
+      "filePath": "_authenticated/dashboard.tsx",
+      "parent": "/_authenticated"
     },
     "/_auth/login": {
       "filePath": "_auth/login.lazy.tsx",

@@ -1,5 +1,4 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Button } from '~/shared/components/ui/button'
 
 export const Route = createLazyFileRoute('/')({
   component: Index,
@@ -18,9 +17,6 @@ function Index() {
             수비니겨 날로 쑤메 뻔한킈 하고져 할따라미니라
           </p>
         </article>
-        <div className="mt-4">
-          <Button>shadcn/ui</Button>
-        </div>
       </div>
     </main>
   )

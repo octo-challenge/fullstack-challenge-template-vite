@@ -1,22 +1,24 @@
 import { useMutation } from '@tanstack/react-query'
-import { createLazyFileRoute, Link } from '@tanstack/react-router'
+import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { postLogin } from '~/api/login'
-import { useAuthAtom } from '~/app/provider/auth'
 import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
 import { Label } from '~/shared/components/ui/label'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { useAuth } from '~/shared/hooks/use-auth'
 
 export const Route = createLazyFileRoute('/_auth/login')({
   component: Login,
 })
 
 function Login() {
-  const setAuth = useAuthAtom.set()
+  const navigate = useNavigate()
+  const setAuth = useAuth().login
   const { mutate } = useMutation({
     mutationFn: postLogin(),
     onSuccess(e) {
       setAuth(e)
+      navigate({ to: '/dashboard' })
     },
     onError(e) {
       console.log('onError', e)
@@ -54,6 +56,7 @@ function Login() {
                     type="email"
                     placeholder="example@email.com"
                     required
+                    tabIndex={1}
                   />
                 )}
               />
@@ -61,7 +64,11 @@ function Login() {
             <div className="space-y-2">
               <div className="flex items-center">
                 <Label htmlFor="password">비밀번호</Label>
-                <Link to="/" className="ml-auto inline-block text-sm underline">
+                <Link
+                  to="/"
+                  className="ml-auto inline-block text-sm underline"
+                  tabIndex={5}
+                >
                   비밀번호 찾기
                 </Link>
               </div>
@@ -69,16 +76,16 @@ function Login() {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <Input {...field} type="password" required />
+                  <Input {...field} type="password" required tabIndex={2} />
                 )}
               />
             </div>
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" tabIndex={3}>
               로그인
             </Button>
             <div className="mt-4 text-center text-sm">
               계정이 없으신가요?{' '}
-              <Link to="/" className="underline">
+              <Link to="/" className="underline" tabIndex={4}>
                 회원가입
               </Link>
             </div>

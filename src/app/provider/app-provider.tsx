@@ -1,5 +1,5 @@
 import React from 'react'
-import { pipe, flow } from 'fp-ts/function'
+import { pipe } from 'fp-ts/function'
 import { QueryClientProvider } from './tanstack-query'
 import { JotaiProvider } from './jotai'
 import { TanstackRouterProvider } from './tanstack-router'
