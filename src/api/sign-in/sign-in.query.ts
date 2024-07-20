@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query'
 
-export function loginQueryOptions() {
+export function signInQueryOptions() {
   return queryOptions({
-    queryKey: ['login'],
+    queryKey: ['sign-in'],
   })
 }

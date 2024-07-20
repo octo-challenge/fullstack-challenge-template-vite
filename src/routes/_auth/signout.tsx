@@ -1,10 +1,10 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_auth/logout')({
+export const Route = createFileRoute('/_auth/signout')({
   beforeLoad: ({ context }) => {
     if (context.auth.value) {
-      context.auth.logout()
-      throw redirect({ to: '/login' })
+      context.auth.signout()
+      throw redirect({ to: '/signin' })
     }
   },
   component: () => <div>Hello /_auth/logout!</div>,

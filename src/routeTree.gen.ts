@@ -18,13 +18,13 @@ import { Route as AuthImport } from './routes/_auth'
 import { Route as R404Import } from './routes/404'
 import { Route as AuthenticatedDashboardImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAccountImport } from './routes/_authenticated/account'
-import { Route as AuthLogoutImport } from './routes/_auth/logout'
+import { Route as AuthSignoutImport } from './routes/_auth/signout'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
-const AuthRegisterLazyImport = createFileRoute('/_auth/register')()
-const AuthLoginLazyImport = createFileRoute('/_auth/login')()
+const AuthSignupLazyImport = createFileRoute('/_auth/signup')()
+const AuthSigninLazyImport = createFileRoute('/_auth/signin')()
 
 // Create/Update Routes
 
@@ -48,17 +48,15 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const AuthRegisterLazyRoute = AuthRegisterLazyImport.update({
-  path: '/register',
+const AuthSignupLazyRoute = AuthSignupLazyImport.update({
+  path: '/signup',
   getParentRoute: () => AuthRoute,
-} as any).lazy(() =>
-  import('./routes/_auth/register.lazy').then((d) => d.Route),
-)
+} as any).lazy(() => import('./routes/_auth/signup.lazy').then((d) => d.Route))
 
-const AuthLoginLazyRoute = AuthLoginLazyImport.update({
-  path: '/login',
+const AuthSigninLazyRoute = AuthSigninLazyImport.update({
+  path: '/signin',
   getParentRoute: () => AuthRoute,
-} as any).lazy(() => import('./routes/_auth/login.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/_auth/signin.lazy').then((d) => d.Route))
 
 const AuthenticatedDashboardRoute = AuthenticatedDashboardImport.update({
   path: '/dashboard',
@@ -70,8 +68,8 @@ const AuthenticatedAccountRoute = AuthenticatedAccountImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthLogoutRoute = AuthLogoutImport.update({
-  path: '/logout',
+const AuthSignoutRoute = AuthSignoutImport.update({
+  path: '/signout',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -107,11 +105,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedImport
       parentRoute: typeof rootRoute
     }
-    '/_auth/logout': {
-      id: '/_auth/logout'
-      path: '/logout'
-      fullPath: '/logout'
-      preLoaderRoute: typeof AuthLogoutImport
+    '/_auth/signout': {
+      id: '/_auth/signout'
+      path: '/signout'
+      fullPath: '/signout'
+      preLoaderRoute: typeof AuthSignoutImport
       parentRoute: typeof AuthImport
     }
     '/_authenticated/account': {
@@ -128,18 +126,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardImport
       parentRoute: typeof AuthenticatedImport
     }
-    '/_auth/login': {
-      id: '/_auth/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginLazyImport
+    '/_auth/signin': {
+      id: '/_auth/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof AuthSigninLazyImport
       parentRoute: typeof AuthImport
     }
-    '/_auth/register': {
-      id: '/_auth/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof AuthRegisterLazyImport
+    '/_auth/signup': {
+      id: '/_auth/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof AuthSignupLazyImport
       parentRoute: typeof AuthImport
     }
   }
@@ -151,9 +149,9 @@ export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   R404Route,
   AuthRoute: AuthRoute.addChildren({
-    AuthLogoutRoute,
-    AuthLoginLazyRoute,
-    AuthRegisterLazyRoute,
+    AuthSignoutRoute,
+    AuthSigninLazyRoute,
+    AuthSignupLazyRoute,
   }),
   AuthenticatedRoute: AuthenticatedRoute.addChildren({
     AuthenticatedAccountRoute,
@@ -184,9 +182,9 @@ export const routeTree = rootRoute.addChildren({
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
-        "/_auth/logout",
-        "/_auth/login",
-        "/_auth/register"
+        "/_auth/signout",
+        "/_auth/signin",
+        "/_auth/signup"
       ]
     },
     "/_authenticated": {
@@ -196,8 +194,8 @@ export const routeTree = rootRoute.addChildren({
         "/_authenticated/dashboard"
       ]
     },
-    "/_auth/logout": {
-      "filePath": "_auth/logout.tsx",
+    "/_auth/signout": {
+      "filePath": "_auth/signout.tsx",
       "parent": "/_auth"
     },
     "/_authenticated/account": {
@@ -208,12 +206,12 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_authenticated/dashboard.tsx",
       "parent": "/_authenticated"
     },
-    "/_auth/login": {
-      "filePath": "_auth/login.lazy.tsx",
+    "/_auth/signin": {
+      "filePath": "_auth/signin.lazy.tsx",
       "parent": "/_auth"
     },
-    "/_auth/register": {
-      "filePath": "_auth/register.lazy.tsx",
+    "/_auth/signup": {
+      "filePath": "_auth/signup.lazy.tsx",
       "parent": "/_auth"
     }
   }

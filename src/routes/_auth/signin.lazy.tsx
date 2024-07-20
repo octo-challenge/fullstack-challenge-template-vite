@@ -1,21 +1,21 @@
 import { useMutation } from '@tanstack/react-query'
 import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
-import { postLogin } from '~/api/login'
 import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
 import { Label } from '~/shared/components/ui/label'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useAuth } from '~/shared/hooks/use-auth'
+import { postSignIn } from '~/api/sign-in'
 
-export const Route = createLazyFileRoute('/_auth/login')({
-  component: Login,
+export const Route = createLazyFileRoute('/_auth/signin')({
+  component: Signin,
 })
 
-function Login() {
+function Signin() {
   const navigate = useNavigate()
-  const setAuth = useAuth().login
+  const setAuth = useAuth().signin
   const { mutate } = useMutation({
-    mutationFn: postLogin(),
+    mutationFn: postSignIn(),
     onSuccess(e) {
       setAuth(e)
       navigate({ to: '/dashboard' })

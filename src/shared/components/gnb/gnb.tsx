@@ -80,7 +80,7 @@ export function GNB() {
           </NavigationMenuList>
         </NavigationMenu>
         <Button asChild>
-          <Link to="/login">로그인</Link>
+          <Link to="/signin">로그인</Link>
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -107,7 +107,7 @@ export function GNB() {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link to="/logout" className="flex items-center gap-2">
+              <Link to="/signout" className="flex items-center gap-2">
                 <div className="h-4 w-4" />
                 <span>Logout</span>
               </Link>

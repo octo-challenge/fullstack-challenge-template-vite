@@ -6,23 +6,18 @@ export function useAuth(): TAuth {
   const state = React.useState<TAuthBase | undefined>(
     LocalStorageManager.getItem('auth'),
   )
-  const logout = () => {
-    console.log('logout function')
+  const signout = () => {
     LocalStorageManager.removeItem('auth')
     state[1](undefined)
   }
-  const login = (auth: TAuthBase) => {
-    console.log('login function', auth)
+  const signin = (auth: TAuthBase) => {
     LocalStorageManager.setItem('auth', auth)
     state[1](auth)
   }
 
-  React.useEffect(() => {
-    console.log('auth', state[0])
-  }, [state[0]])
   return {
     value: state[0],
-    logout,
-    login,
+    signout,
+    signin,
   }
 }
