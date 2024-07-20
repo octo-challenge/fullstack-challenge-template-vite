@@ -1,5 +1,6 @@
-import { pipe, flow } from 'fp-ts/function'
-import { Outlet } from 'react-router-dom'
+import { createRootRoute } from '@tanstack/react-router'
+import { pipe } from 'fp-ts/function'
+import { Outlet } from '@tanstack/react-router'
 import { AppProvider } from '~/app/provider/app-provider'
 import { FNB } from '~/shared/components/fnb'
 import { GNB } from '~/shared/components/gnb'
@@ -16,4 +17,6 @@ function App() {
   )
 }
 
-export default pipe(App, AppProvider)
+export const Route = createRootRoute({
+  component: pipe(App, AppProvider),
+})

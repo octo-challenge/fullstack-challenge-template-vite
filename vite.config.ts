@@ -1,11 +1,11 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import generouted from '@hansanghyeon/generouted-react-router/plugin'
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), generouted()],
+  plugins: [TanStackRouterVite(), react()],
   resolve: {
     alias: [
       {

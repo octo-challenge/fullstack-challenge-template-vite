@@ -1,8 +1,8 @@
 import React from 'react'
 import { pipe, flow } from 'fp-ts/function'
-import { BrwoserRouterEventContainer } from '~/app/provider/react-router-dom'
 import { QueryClientProvider } from './tanstack-query'
 import { JotaiProvider } from './jotai'
+import { TanstackRouterProvider } from './tanstack-router'
 
 // 각 Provider를 래핑하는 함수
 const wrap =
@@ -17,7 +17,7 @@ const AppProvider =
         children,
         wrap(JotaiProvider),
         wrap(QueryClientProvider),
-        wrap(BrwoserRouterEventContainer),
+        wrap(TanstackRouterProvider),
       )
     return (
       <ComposedProviders>

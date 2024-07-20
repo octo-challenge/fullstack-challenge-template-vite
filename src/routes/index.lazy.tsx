@@ -1,6 +1,11 @@
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { Button } from '~/shared/components/ui/button'
 
-export default function Home() {
+export const Route = createLazyFileRoute('/')({
+  component: Index,
+})
+
+function Index() {
   return (
     <main>
       <div className="grid h-[calc(100dvh-var(--gnb-h))] place-content-center">
