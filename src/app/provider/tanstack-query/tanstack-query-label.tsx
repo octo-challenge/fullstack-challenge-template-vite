@@ -78,23 +78,14 @@ export function TanstackQueryLabel() {
           className={cn(
             'fixed z-[99999] inline-flex w-auto cursor-pointer appearance-none items-center gap-2 rounded-[calc(var(--tsrd-font-size)*0.375)] border border-[#667085] bg-white p-[calc(var(--tsrd-font-size)*0.25)] px-[calc(var(--tsrd-font-size)*0.5)] py-[calc(var(--tsrd-font-size)*0.25)] text-[calc(var(--tsrd-font-size)*0.75)] transition-all duration-200 ease-out dark:bg-[#191c24]',
             // 'pl-[calc(var(--tsrd-font-size)*0.375)]',
-            'bottom-[calc(var(--tsrd-font-size)*0.5)] right-[calc(var(--tsrd-font-size)*0.5)]',
-            'origin-top-right translate-x-[0.5rem] rotate-90 rounded-t-none',
-            'shadow-md',
+            'bottom-[calc(var(--tsrd-font-size)*0.5)] right-[calc(var(--tsrd-font-size)*10.5)]',
+            'origin-top-right translate-x-[0.5rem]',
+            'h-[30px] bg-[#191c24]',
             isOpen && 'pointer-events-none opacity-0',
           )}
         >
-          {/* <div className="relative bg-pink-500 rounded-full overflow-hidden w-[calc(var(--tsrd-font-size)*1.25)] h-[calc(var(--tsrd-font-size)*1.25)]">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 filter blur-[3px] saturate-[1.8] contrast-[2] w-[calc(var(--tsrd-font-size)*1.25)] h-[calc(var(--tsrd-font-size)*1.25)]">
-              <IconTanstackQuery />
-            </div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(var(--tsrd-font-size)*1)] h-[calc(var(--tsrd-font-size)*1)]">
-              <IconTanstackQuery />
-            </div>
-          </div>
-          <div className="w-[1px] bg-[#475467] h-[0.8rem] rounded-full text-transparent" /> */}
           <div className="font-pretendard whitespace-nowrap bg-gradient-to-r from-[#dd524b] to-[#e9a03b] bg-clip-text text-[calc(var(--tsrd-font-size)*0.75)] font-semibold leading-none text-transparent">
-            React Query v5
+            TanStack Query
           </div>
         </button>
       </div>

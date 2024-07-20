@@ -1,6 +1,6 @@
 import React from 'react'
 import { IoPerson } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { Link } from '@tanstack/react-router'
 import Headroom from 'headroom.js'
 import { LuMountain } from 'react-icons/lu'
 import {
@@ -56,7 +56,7 @@ export function GNB() {
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
               <Link
-                to="#"
+                to="/"
                 className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
               >
                 About
@@ -64,7 +64,7 @@ export function GNB() {
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
               <Link
-                to="#"
+                to="/"
                 className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
               >
                 Services
@@ -72,7 +72,7 @@ export function GNB() {
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
               <Link
-                to="#"
+                to="/"
                 className="bg-background hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50"
               >
                 Contact
@@ -95,20 +95,20 @@ export function GNB() {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
-              <Link to="#" className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <div className="h-4 w-4" />
                 <span>Account</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link to="#" className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <div className="h-4 w-4" />
                 <span>Settings</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link to="#" className="flex items-center gap-2">
+              <Link to="/" className="flex items-center gap-2">
                 <div className="h-4 w-4" />
                 <span>Logout</span>
               </Link>

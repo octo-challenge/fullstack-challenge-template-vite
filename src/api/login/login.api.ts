@@ -20,7 +20,6 @@ export function postLogin() {
       .post<T, AxiosResponse<T>, R>('/auth/login', body)
       .then((res) => res.data)
 
-    postResLoginDto.parse(result.data)
     return result
   }
 }
