@@ -22,8 +22,10 @@ import {
 } from '~/shared/components/ui/avatar'
 import './gnb.css'
 import { Button } from '../ui/button'
+import { useAuth } from '~/shared/hooks/use-auth'
 
 export function GNB() {
+  const auth = useAuth().value
   const headerRef = React.useRef<HTMLElement>(null)
   React.useEffect(() => {
     const header = headerRef.current
@@ -79,41 +81,46 @@ export function GNB() {
             </NavigationMenuLink>
           </NavigationMenuList>
         </NavigationMenu>
-        <Button asChild>
-          <Link to="/signin">로그인</Link>
-        </Button>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="/placeholder-user.jpg" />
-              <AvatarFallback>
-                <IoPerson />
-              </AvatarFallback>
-              <span className="sr-only">Toggle user menu</span>
-            </Avatar>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <Link to="/" className="flex items-center gap-2">
-                <div className="h-4 w-4" />
-                <span>Account</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link to="/" className="flex items-center gap-2">
-                <div className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link to="/signout" className="flex items-center gap-2">
-                <div className="h-4 w-4" />
-                <span>Logout</span>
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {auth?.accessToken ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button type="button" className="focus:outline-none">
+                <Avatar className="h-9 w-9">
+                  <AvatarImage src="/placeholder-user.jpg" />
+                  <AvatarFallback>
+                    <IoPerson />
+                  </AvatarFallback>
+                  <span className="sr-only">Toggle user menu</span>
+                </Avatar>
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>
+                <Link to="/" className="flex items-center gap-2">
+                  <div className="h-4 w-4" />
+                  <span>Account</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link to="/" className="flex items-center gap-2">
+                  <div className="h-4 w-4" />
+                  <span>Settings</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Link to="/signout" className="flex items-center gap-2">
+                  <div className="h-4 w-4" />
+                  <span>Logout</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Button asChild>
+            <Link to="/signin">로그인</Link>
+          </Button>
+        )}
       </nav>
     </header>
   )
