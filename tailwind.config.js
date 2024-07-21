@@ -55,5 +55,6 @@ export default {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/container-queries'),
     require('tailwindcss-animate'),
+    require('tailwindcss-mac-scrollbar'),
   ],
 }
