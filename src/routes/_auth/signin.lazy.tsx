@@ -2,10 +2,19 @@ import { useMutation } from '@tanstack/react-query'
 import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
-import { Label } from '~/shared/components/ui/label'
-import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { useAuth } from '~/shared/hooks/use-auth'
-import { postSignIn } from '~/api/sign-in'
+import { postPayloadSignInDto, postSignIn } from '~/api/sign-in'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'react-toastify'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '~/shared/components/ui/form'
+import { IsValid } from '~/shared/calc/is-valid'
 
 export const Route = createLazyFileRoute('/_auth/signin')({
   component: Signin,
@@ -20,20 +29,23 @@ function Signin() {
       setAuth(e)
       navigate({ to: '/dashboard' })
     },
-    onError(e) {
-      console.log('onError', e)
+    onError() {
+      toast.error('이메일과 패스워드가 맞지 않습니다')
     },
   })
   const form = useForm({
+    resolver: zodResolver(postPayloadSignInDto),
     defaultValues: {
       user_email: '',
       password: '',
     },
   })
   const { handleSubmit } = form
+
   const onSubmit = handleSubmit((payload) => {
     mutate(payload)
   })
+
   return (
     <div className="mx-auto max-w-sm space-y-6">
       <div className="space-y-2 text-center">
@@ -46,37 +58,53 @@ function Signin() {
         <form onSubmit={onSubmit}>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">이메일</Label>
-              <Controller
+              <FormField
                 control={form.control}
                 name="user_email"
-                render={({ field }) => (
-                  <Input
-                    {...field}
-                    type="email"
-                    placeholder="example@email.com"
-                    required
-                    tabIndex={1}
-                  />
+                render={({ field, fieldState }) => (
+                  <FormItem>
+                    <FormLabel>이메일</FormLabel>
+                    <FormControl>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="hello@example.com"
+                        isValid={IsValid(fieldState)}
+                        autoComplete="off"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">비밀번호</Label>
-                <Link
-                  to="/"
-                  className="ml-auto inline-block text-sm underline"
-                  tabIndex={5}
-                >
-                  비밀번호 찾기
-                </Link>
-              </div>
-              <Controller
+              <FormField
                 control={form.control}
                 name="password"
-                render={({ field }) => (
-                  <Input {...field} type="password" required tabIndex={2} />
+                render={({ field, fieldState }) => (
+                  <FormItem>
+                    <FormLabel className="flex items-center">
+                      비밀번호{' '}
+                      <Link
+                        to="/"
+                        className="ml-auto inline-block text-sm font-normal underline"
+                        tabIndex={5}
+                      >
+                        비밀번호 찾기
+                      </Link>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        id="password"
+                        type="password"
+                        isValid={IsValid(fieldState)}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
               />
             </div>
@@ -85,7 +113,7 @@ function Signin() {
             </Button>
             <div className="mt-4 text-center text-sm">
               계정이 없으신가요?{' '}
-              <Link to="/" className="underline" tabIndex={4}>
+              <Link to="/signup" className="underline" tabIndex={4}>
                 회원가입
               </Link>
             </div>
