@@ -5,6 +5,7 @@ import { AppProvider } from '~/app/provider/app-provider'
 import { FNB } from '~/shared/components/fnb'
 import { GNB } from '~/shared/components/gnb'
 import { TAuth } from '~/shared/hooks/use-auth'
+import { ToastContainer } from '~/shared/components/toast-container/toast-container'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Outlet />
       </div>
       <FNB />
+      <ToastContainer />
     </>
   )
 }
