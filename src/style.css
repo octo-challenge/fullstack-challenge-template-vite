@@ -3,11 +3,20 @@
 @tailwind utilities;
 
 * {
-  @apply font-sans;
+  @apply font-sans mac-scrollbar;
 }
 
 :root {
   --gnb-h: 80px;
   --head-area: 60px;
   --footer-area: 200px;
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+body[data-scroll-locked][data-scroll-locked] {
+  --removed-body-scroll-bar-size: var(--tw-mac-scrollbar-size-w);
+  margin-right: var(--removed-body-scroll-bar-size) !important;
 }
