@@ -13,6 +13,7 @@ export default [
         'error',
         {
           varsIgnorePattern: 'flow',
+          argsIgnorePattern: '^_',
         },
       ],
     },
