@@ -4,7 +4,7 @@ import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useAuth } from '~/shared/hooks/use-auth'
-import { postPayloadSignInDto, postSignIn } from '~/api/sign-in'
+import { postPayloadSignInDto, postSignIn } from '~/api/auth/sign-in'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
 import {
