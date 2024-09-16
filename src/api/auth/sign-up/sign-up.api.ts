@@ -20,7 +20,11 @@ export function postSignUp() {
       .post<T, AxiosResponse<T>, R>('/auth/sign-up', body)
       .then((res) => res.data)
 
-    postResSignUpDto.parse(result)
+    try {
+      postResSignUpDto.parse(result)
+    } catch (error) {
+      console.error(error)
+    }
     return result
   }
 }
