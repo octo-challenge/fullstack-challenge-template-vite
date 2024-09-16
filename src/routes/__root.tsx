@@ -4,8 +4,8 @@ import { Outlet } from '@tanstack/react-router'
 import { AppProvider } from '~/app/provider/app-provider'
 import { FNB } from '~/shared/components/fnb'
 import { GNB } from '~/shared/components/gnb'
-import { TAuth } from '~/shared/hooks/use-auth'
 import { ToastContainer } from '~/shared/components/toast-container/toast-container'
+import { AuthManager } from '~/shared/managers/auth'
 
 function App() {
   return (
@@ -20,10 +20,10 @@ function App() {
   )
 }
 
-interface MyRouterContext {
-  auth: TAuth
+interface RouterContext {
+  auth: typeof AuthManager
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: pipe(App, AppProvider),
 })

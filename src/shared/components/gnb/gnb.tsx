@@ -22,10 +22,10 @@ import {
 } from '~/shared/components/ui/avatar'
 import './gnb.css'
 import { Button } from '../ui/button'
-import { useAuth } from '~/shared/hooks/use-auth'
+import { AuthManager } from '~/shared/managers/auth'
 
 export function GNB() {
-  const auth = useAuth().value
+  const auth = AuthManager.token
   const headerRef = React.useRef<HTMLDivElement>(null)
   React.useEffect(() => {
     const header = headerRef.current

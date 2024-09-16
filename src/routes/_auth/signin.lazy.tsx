@@ -3,7 +3,6 @@ import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useAuth } from '~/shared/hooks/use-auth'
 import { postPayloadSignInDto, postSignIn } from '~/api/auth/sign-in'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
@@ -15,6 +14,7 @@ import {
   FormMessage,
 } from '~/shared/components/ui/form'
 import { IsValid } from '~/shared/calc/is-valid'
+import { AuthManager } from '~/shared/managers/auth'
 
 export const Route = createLazyFileRoute('/_auth/signin')({
   component: Signin,
@@ -22,11 +22,10 @@ export const Route = createLazyFileRoute('/_auth/signin')({
 
 function Signin() {
   const navigate = useNavigate()
-  const setAuth = useAuth().signin
   const { mutate } = useMutation({
     mutationFn: postSignIn(),
     onSuccess(e) {
-      setAuth(e)
+      AuthManager.signin(e)
       navigate({ to: '/dashboard' })
     },
     onError() {
