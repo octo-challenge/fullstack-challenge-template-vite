@@ -11,7 +11,7 @@ const axios = ApiClient()
  * @description
  */
 export function getAuthenticate() {
-  return async function (params: TGetParamsAuthenticateDto) {
+  return async function (params?: TGetParamsAuthenticateDto) {
     const result = await axios
       .get<TGetResAuthenticateDto>('/auth/authenticate', { params })
       .then((res) => res.data)
@@ -21,6 +21,6 @@ export function getAuthenticate() {
     } catch (error) {
       console.error(error)
     }
-    return result.data
+    return result
   }
 }
