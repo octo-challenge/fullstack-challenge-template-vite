@@ -11,7 +11,7 @@ export function ApiClient() {
 
   instance.interceptors.request.use(async (request) => {
     // 로그인 하는 요청에는 accessToken을 가져오지 않는다.
-    if (request.url === '/auth/sign-in') {
+    if (request.url === '/auth/sign-in' || request.url === '/auth/sign-up') {
       return request
     }
 
