@@ -10,11 +10,11 @@ import { AuthManager } from '~/shared/managers/auth'
 function App() {
   return (
     <>
-      <GNB />
-      <div className="mt-[var(--gnb-h)]">
+      <main className="mt-[var(--gnb-h)] pt-[var(--head-area)]">
+        <GNB />
         <Outlet />
-      </div>
-      <FNB />
+        <FNB />
+      </main>
       <ToastContainer />
     </>
   )

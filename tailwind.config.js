@@ -23,10 +23,10 @@ export default {
     },
     extend: {
       padding: {
-        space: '80px',
+        space: 'var(--space, 80px)',
       },
       margin: {
-        space: '80px',
+        space: 'var(--space, 80px)',
       },
       keyframes: {
         'accordion-down': {

@@ -9,7 +9,7 @@ export const Route = createFileRoute('/_auth')({
     return null
   },
   component: () => (
-    <div className="min-h-[calc(100dvh-var(--gnb-h))] pt-[var(--head-area)]">
+    <div className="pt-[var(--head-area)]">
       <Outlet />
     </div>
   ),
