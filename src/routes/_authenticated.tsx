@@ -1,6 +1,8 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { isAxiosError } from 'axios'
+import { toast } from 'react-toastify'
+import { 상수_인증상태 } from '~/api/@x/인증상태'
 import { getAuthenticate } from '~/api/auth/authenticate'
+import { searchAuthState } from '~/shared/calc/search-auth-state'
 import { AuthManager } from '~/shared/managers/auth'
 
 export const Route = createFileRoute('/_authenticated')({
@@ -17,6 +19,7 @@ export const Route = createFileRoute('/_authenticated')({
 
     // 1.
     if (!context.auth.token) {
+      toast.error('로그인이 필요합니다.')
       throw redirect({
         to: '/signin',
         search: {
@@ -26,25 +29,18 @@ export const Route = createFileRoute('/_authenticated')({
     }
 
     // 2.
-    const res = await getAuthenticate()()
-
-    // 3.
-    if (context.auth.token && isAxiosError(res)) {
-      throw redirect({
-        to: '/signout',
-      })
-    }
+    await getAuthenticate()()
   },
   component() {
     return <Outlet />
   },
   onError(err: any) {
-    AuthManager.clear()
     if (err.response.data.statusCode === 401) {
+      AuthManager.clear()
       throw redirect({
         to: '/signin',
         search: {
-          redirect: location.href,
+          ...searchAuthState(상수_인증상태.인증만료),
         },
       })
     }
