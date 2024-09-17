@@ -12,8 +12,14 @@ export default [
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
-          varsIgnorePattern: 'flow',
-          argsIgnorePattern: '^_',
+          vars: 'all',
+          varsIgnorePattern: '^_.*$|^_$|^P$|^flow$',
+          args: 'all',
+          argsIgnorePattern: '^_.*$|^_$|^P$|^flow$',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_.*$|^_$|^P$|^flow$',
+          destructuredArrayIgnorePattern: '^_.*$|^_$|^P$|^flow$',
+          ignoreRestSiblings: true,
         },
       ],
     },
