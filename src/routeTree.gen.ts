@@ -145,19 +145,121 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexLazyRoute,
-  R404Route,
-  AuthRoute: AuthRoute.addChildren({
-    AuthSignoutRoute,
-    AuthSigninLazyRoute,
-    AuthSignupLazyRoute,
-  }),
-  AuthenticatedRoute: AuthenticatedRoute.addChildren({
-    AuthenticatedAccountRoute,
-    AuthenticatedDashboardRoute,
-  }),
-})
+interface AuthRouteChildren {
+  AuthSignoutRoute: typeof AuthSignoutRoute
+  AuthSigninLazyRoute: typeof AuthSigninLazyRoute
+  AuthSignupLazyRoute: typeof AuthSignupLazyRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthSignoutRoute: AuthSignoutRoute,
+  AuthSigninLazyRoute: AuthSigninLazyRoute,
+  AuthSignupLazyRoute: AuthSignupLazyRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+export interface FileRoutesByFullPath {
+  '/': typeof IndexLazyRoute
+  '/404': typeof R404Route
+  '': typeof AuthenticatedRouteWithChildren
+  '/signout': typeof AuthSignoutRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/signin': typeof AuthSigninLazyRoute
+  '/signup': typeof AuthSignupLazyRoute
+}
+
+export interface FileRoutesByTo {
+  '/': typeof IndexLazyRoute
+  '/404': typeof R404Route
+  '': typeof AuthenticatedRouteWithChildren
+  '/signout': typeof AuthSignoutRoute
+  '/account': typeof AuthenticatedAccountRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/signin': typeof AuthSigninLazyRoute
+  '/signup': typeof AuthSignupLazyRoute
+}
+
+export interface FileRoutesById {
+  __root__: typeof rootRoute
+  '/': typeof IndexLazyRoute
+  '/404': typeof R404Route
+  '/_auth': typeof AuthRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_auth/signout': typeof AuthSignoutRoute
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_auth/signin': typeof AuthSigninLazyRoute
+  '/_auth/signup': typeof AuthSignupLazyRoute
+}
+
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/404'
+    | ''
+    | '/signout'
+    | '/account'
+    | '/dashboard'
+    | '/signin'
+    | '/signup'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/404'
+    | ''
+    | '/signout'
+    | '/account'
+    | '/dashboard'
+    | '/signin'
+    | '/signup'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/_auth'
+    | '/_authenticated'
+    | '/_auth/signout'
+    | '/_authenticated/account'
+    | '/_authenticated/dashboard'
+    | '/_auth/signin'
+    | '/_auth/signup'
+  fileRoutesById: FileRoutesById
+}
+
+export interface RootRouteChildren {
+  IndexLazyRoute: typeof IndexLazyRoute
+  R404Route: typeof R404Route
+  AuthRoute: typeof AuthRouteWithChildren
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexLazyRoute: IndexLazyRoute,
+  R404Route: R404Route,
+  AuthRoute: AuthRouteWithChildren,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
