@@ -8,7 +8,7 @@ import {
   postPayloadSignUpRdo,
   postSignUp,
   TPostPayloadSignUpRdo,
-} from '~/api/sign-up'
+} from '~/api/auth/sign-up'
 import { IsValid } from '~/shared/calc/is-valid'
 import { Button } from '~/shared/components/ui/button'
 import { Checkbox } from '~/shared/components/ui/checkbox'
@@ -27,7 +27,7 @@ export const Route = createLazyFileRoute('/_auth/signup')({
 })
 
 function Register() {
-  const nativate = useNavigate()
+  const navigate = useNavigate()
   const form = useForm<TPostPayloadSignUpRdo>({
     resolver: zodResolver(postPayloadSignUpRdo),
     defaultValues: {
@@ -45,7 +45,7 @@ function Register() {
     mutationFn: postSignUp(),
     onSuccess() {
       toast.success('회원가입이 완료되었습니다.')
-      nativate({ to: '/signin' })
+      navigate({ to: '/signin' })
     },
     onError({ response }) {
       if (response?.data.message === 'User email aleady used!') {
@@ -127,11 +127,11 @@ function Register() {
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormLabel>
-                      <Link href="/" className="underline underline-offset-4">
+                      <Link to="/" className="underline underline-offset-4">
                         서비스 약관
                       </Link>{' '}
                       및{' '}
-                      <Link href="/" className="underline underline-offset-4">
+                      <Link to="/" className="underline underline-offset-4">
                         개인 정보 보호 정책
                       </Link>
                       에 동의합니다.
