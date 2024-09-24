@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { match, P } from 'ts-pattern'
 import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { Button } from '~/shared/components/ui/button'
 import { Input } from '~/shared/components/ui/input'
@@ -16,25 +15,12 @@ import {
 } from '~/shared/components/ui/form'
 import { IsValid } from '~/shared/calc/is-valid'
 import { AuthManager } from '~/shared/managers/auth'
-import React from 'react'
-import { T_searchAuthState } from '~/shared/calc/search-auth-state'
-import { 상수_인증상태 } from '~/api/@x/인증상태'
 
 export const Route = createLazyFileRoute('/_auth/signin')({
   component: Signin,
 })
 
 function Signin() {
-  const { authState } = Route.useSearch<T_searchAuthState>()
-
-  React.useEffect(() => {
-    match(authState)
-      .with(상수_인증상태.인증만료, () => {
-        toast.error('로그인이 만료되었습니다. 다시 로그인해주세요.')
-      })
-      .otherwise(() => null)
-  }, [])
-
   const navigate = useNavigate()
   const { mutate } = useMutation({
     mutationFn: postSignIn(),
