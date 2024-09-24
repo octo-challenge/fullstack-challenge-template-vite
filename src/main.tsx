@@ -7,6 +7,7 @@ import './style.css'
 import { routeTree } from './routeTree.gen'
 import { AuthManager } from './shared/managers/auth'
 import { QueryClientProvider } from './app/provider/tanstack-query'
+import { ToastContainer } from './shared/components/toast-container/toast-container'
 
 // Create a new router instance
 const router = createRouter({
@@ -36,6 +37,7 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <QueryClientProvider>
         <App />
+        <ToastContainer />
       </QueryClientProvider>
     </StrictMode>,
   )

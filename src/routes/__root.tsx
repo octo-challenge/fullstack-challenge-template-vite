@@ -4,7 +4,6 @@ import { Outlet } from '@tanstack/react-router'
 import { AppProvider } from '~/app/provider/app-provider'
 import { FNB } from '~/shared/components/fnb'
 import { GNB } from '~/shared/components/gnb'
-import { ToastContainer } from '~/shared/components/toast-container/toast-container'
 import { AuthManager } from '~/shared/managers/auth'
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
         <Outlet />
         <FNB />
       </main>
-      <ToastContainer />
     </>
   )
 }
