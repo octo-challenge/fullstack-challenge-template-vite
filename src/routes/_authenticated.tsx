@@ -1,8 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { toast } from 'react-toastify'
-import { 상수_인증상태 } from '~/api/@x/인증상태'
 import { getAuthenticate } from '~/api/auth/authenticate'
-import { searchAuthState } from '~/shared/calc/search-auth-state'
 import { AuthManager } from '~/shared/managers/auth'
 
 export const Route = createFileRoute('/_authenticated')({
@@ -37,11 +35,9 @@ export const Route = createFileRoute('/_authenticated')({
   onError(err: any) {
     if (err.response.data.statusCode === 401) {
       AuthManager.clear()
+      toast.error('로그인이 만료되었습니다. 다시 로그인해주세요.')
       throw redirect({
         to: '/signin',
-        search: {
-          ...searchAuthState(상수_인증상태.인증만료),
-        },
       })
     }
   },
