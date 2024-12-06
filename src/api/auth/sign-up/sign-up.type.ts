@@ -1,5 +1,6 @@
-import { postResSignUpDto, postPayloadSignUpDto, postPayloadSignUpRdo } from '.'
 import { z } from 'zod'
+
+import { postPayloadSignUpDto, postPayloadSignUpRdo, postResSignUpDto } from '.'
 
 /**
  * post sign-up

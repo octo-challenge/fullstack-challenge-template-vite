@@ -1,4 +1,5 @@
 import { LocalStorageManager } from '~/shared/managers'
+
 import { TAuthBase } from '.'
 
 export class AuthManager {

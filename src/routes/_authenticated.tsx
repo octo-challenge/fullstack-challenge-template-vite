@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import { toast } from 'react-toastify'
+
 import { getAuthenticate } from '~/api/auth/authenticate'
 import { AuthManager } from '~/shared/managers/auth'
 
@@ -14,8 +15,6 @@ export const Route = createFileRoute('/_authenticated')({
      * @step3
      * 인증이 실패하면 로그인 페이지로 이동합니다.
      */
-
-    // 1.
     if (!context.auth.token) {
       toast.error('로그인이 필요합니다.')
       throw redirect({

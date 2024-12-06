@@ -1,11 +1,12 @@
 import 'react-toastify/dist/ReactToastify.min.css'
 import './toast-container.css'
-import { ToastContainer as ToastContainerPrimitive } from 'react-toastify'
+
 import { cva } from 'class-variance-authority'
-import { match } from 'ts-pattern'
-import { PiCheckCircleDuotone } from 'react-icons/pi'
 import { IoClose } from 'react-icons/io5'
 import { MdError } from 'react-icons/md'
+import { PiCheckCircleDuotone } from 'react-icons/pi'
+import { ToastContainer as ToastContainerPrimitive } from 'react-toastify'
+import { match } from 'ts-pattern'
 
 const stateMap = {
   default: 'default',

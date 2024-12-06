@@ -1,8 +1,9 @@
 import { ApiClient } from '~/shared/api'
+
 import {
   getResAuthenticateDto,
-  type TGetResAuthenticateDto,
   type TGetParamsAuthenticateDto,
+  type TGetResAuthenticateDto,
 } from '.'
 
 const axios = ApiClient()

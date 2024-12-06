@@ -1,7 +1,7 @@
-import { pipe, flow } from 'fp-ts/function'
-import * as R from 'fp-ts/Record'
+import { flow, pipe } from 'fp-ts/function'
 import * as O from 'fp-ts/Option'
-import { ControllerFieldState, Mode } from 'react-hook-form'
+import * as R from 'fp-ts/Record'
+import { type ControllerFieldState, type Mode } from 'react-hook-form'
 import { match } from 'ts-pattern'
 
 /**

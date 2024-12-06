@@ -1,5 +1,6 @@
+import { flow, pipe } from 'fp-ts/function'
 import React from 'react'
-import { pipe } from 'fp-ts/function'
+
 import { TanstackRouterProvider } from './tanstack-router'
 
 // 각 Provider를 래핑하는 함수

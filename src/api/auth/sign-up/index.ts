@@ -1,5 +1,5 @@
 export * from './sign-up.api'
-export * from './sign-up.query'
 export * from './sign-up.dto'
+export * from './sign-up.query'
 export * from './sign-up.rdo'
 export * from './sign-up.type'

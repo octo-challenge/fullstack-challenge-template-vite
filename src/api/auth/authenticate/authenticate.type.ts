@@ -1,5 +1,6 @@
 import { z } from 'zod'
-import { getResAuthenticateDto, getParamsAuthenticateDto } from '.'
+
+import { getParamsAuthenticateDto, getResAuthenticateDto } from '.'
 
 /**
  * get authenticate

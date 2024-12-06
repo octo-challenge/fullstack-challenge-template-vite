@@ -1,13 +1,14 @@
-import ReactDOM from 'react-dom/client'
-import { StrictMode } from 'react'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './style.css'
 
+import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
+
+import { QueryClientProvider } from './app/provider/tanstack-query'
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
-import { AuthManager } from './shared/managers/auth'
-import { QueryClientProvider } from './app/provider/tanstack-query'
 import { ToastContainer } from './shared/components/toast-container/toast-container'
+import { AuthManager } from './shared/managers/auth'
 
 // Create a new router instance
 const router = createRouter({

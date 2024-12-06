@@ -1,9 +1,11 @@
-import { pipe } from 'fp-ts/function'
-import * as R from 'fp-ts/Record'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { createLazyFileRoute, Link, useNavigate } from '@tanstack/react-router'
+import { pipe } from 'fp-ts/function'
+import * as R from 'fp-ts/Record'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+
 import {
   postPayloadSignUpRdo,
   postSignUp,
@@ -20,7 +22,6 @@ import {
   FormMessage,
 } from '~/shared/components/ui/form'
 import { Input } from '~/shared/components/ui/input'
-import { toast } from 'react-toastify'
 
 export const Route = createLazyFileRoute('/_auth/signup')({
   component: Register,

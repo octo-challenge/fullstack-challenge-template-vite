@@ -1,13 +1,16 @@
-import React from 'react'
-import { IoPerson } from 'react-icons/io5'
+import './gnb.css'
+
 import { Link } from '@tanstack/react-router'
 import Headroom from 'headroom.js'
+import React from 'react'
+import { IoPerson } from 'react-icons/io5'
 import { LuMountain } from 'react-icons/lu'
+
 import {
-  NavigationMenu,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from '~/shared/components/ui/navigation-menu'
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '~/shared/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,13 +19,13 @@ import {
   DropdownMenuTrigger,
 } from '~/shared/components/ui/dropdown-menu'
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '~/shared/components/ui/avatar'
-import './gnb.css'
-import { Button } from '../ui/button'
+  NavigationMenu,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from '~/shared/components/ui/navigation-menu'
 import { AuthManager } from '~/shared/managers/auth'
+
+import { Button } from '../ui/button'
 
 export function GNB() {
   const auth = AuthManager.token

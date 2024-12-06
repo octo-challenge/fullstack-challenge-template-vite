@@ -1,6 +1,6 @@
-import { createRootRouteWithContext } from '@tanstack/react-router'
+import { createRootRouteWithContext, Outlet } from '@tanstack/react-router'
 import { pipe } from 'fp-ts/function'
-import { Outlet } from '@tanstack/react-router'
+
 import { AppProvider } from '~/app/provider/app-provider'
 import { FNB } from '~/shared/components/fnb'
 import { GNB } from '~/shared/components/gnb'
